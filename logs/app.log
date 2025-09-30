@@ -1,0 +1,588 @@
+2025-09-30 00:18:58,400 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 00:18:58,625 | INFO | user=Sistema | op=SETUP | Usuário 'migration_v2' criado com sucesso.
+2025-09-30 00:18:58,625 | INFO | user=migration_v2 | op=MIGRATION | Migração de dados finalizada.
+2025-09-30 00:38:20,494 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 00:38:25,744 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 00:38:25,744 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 00:38:41,364 | ERROR | user=admin | op=CREATE_CLIENTE | Erro inesperado ao criar cliente
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 74, in create_cliente
+    data_nascimento=parse_date(data.get("data_nasc")),
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\src\utils.py", line 60, in parse_date
+    return datetime.strptime(data_str, '%d/%m/%Y').date()
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'strptime'
+2025-09-30 00:39:08,010 | ERROR | user=admin | op=CREATE_CLIENTE | Erro inesperado ao criar cliente
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 74, in create_cliente
+    data_nascimento=parse_date(data.get("data_nasc")),
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\src\utils.py", line 60, in parse_date
+    return datetime.strptime(data_str, '%d/%m/%Y').date()
+           ^^^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'strptime'
+2025-09-30 00:41:05,493 | ERROR | user=admin | op=CREATE_CLIENTE | Erro inesperado ao criar cliente
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 74, in create_cliente
+    data_nascimento=parse_date(data.get("data_nasc")),
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\src\utils.py", line 60, in parse_date
+    def parse_date(data_str: str) -> date:
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'strptime'
+2025-09-30 00:41:11,169 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 00:41:17,210 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 00:41:17,210 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 00:41:37,134 | ERROR | user=admin | op=CREATE_CLIENTE | Erro inesperado ao criar cliente
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 71, in create_cliente
+    cliente = Cliente(
+        nome=data["nome"],
+    ...<4 lines>...
+        endereco=data.get("endereco")
+    )
+  File "<string>", line 4, in __init__
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+        "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+    )
+TypeError: 'telefone' is an invalid keyword argument for Cliente
+2025-09-30 00:49:53,508 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 00:49:57,309 | ERROR | user=Sistema | op=INIT | Erro inesperado no login: Mapper 'Mapper[Cliente(clientes)]' has no property 'apolices'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+Traceback (most recent call last):
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2522, in get_property
+    return self._props[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'apolices'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "B:\sprint3\src\sistema.py", line 25, in login
+    user = dao.authenticate_user(db, username, password)
+  File "B:\sprint3\src\dao.py", line 50, in authenticate_user
+    user = db.scalar(select(User).where(User.username == username))
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2413, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1633, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ~~~~~~~~~~~~~~~~~~~~~^
+        dialect=dialect,
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        linting=self.dialect.compiler_linting | compiler.WARN_LINTING,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 715, in _compile_w_cache
+    compiled_sql = self._compiler(
+        dialect,
+    ...<4 lines>...
+        **kw,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 1446, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 886, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 932, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\visitors.py", line 138, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 4781, in visit_select
+    compile_state = select_stmt._compile_state_factory(
+        select_stmt, self, **kwargs
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\base.py", line 701, in create_for_statement
+    return klass.create_for_statement(statement, compiler, **kw)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 447, in create_for_statement
+    return cls._create_orm_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        cast("Union[Select, FromStatement]", statement),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 1175, in _create_orm_context
+    _QueryEntity.to_compile_state(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<2 lines>...
+        is_current_entities=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 2628, in to_compile_state
+    _MapperEntity(
+    ~~~~~~~~~~~~~^
+        compile_state,
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        is_current_entities,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 2708, in __init__
+    entity._post_inspect
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 1338, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ~~~~~~~~~^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2724, in _post_inspect
+    self._check_configure()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2401, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4218, in _configure_registries
+    _do_configure_registries(registries, cascade)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4259, in _do_configure_registries
+    mapper._post_configure_properties()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2418, in _post_configure_properties
+    prop.init()
+    ~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\interfaces.py", line 595, in init
+    self.do_init()
+    ~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1660, in do_init
+    self._generate_backref()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 2144, in _generate_backref
+    self._add_reverse_property(self.back_populates)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1591, in _add_reverse_property
+    other = self.mapper.get_property(key, _configure_mappers=False)
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2524, in get_property
+    raise sa_exc.InvalidRequestError(
+    ...<3 lines>...
+    ) from err
+sqlalchemy.exc.InvalidRequestError: Mapper 'Mapper[Cliente(clientes)]' has no property 'apolices'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2025-09-30 00:51:42,320 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 00:51:46,735 | ERROR | user=Sistema | op=INIT | Erro inesperado no login: Mapper 'Mapper[Apolice(apolices)]' has no property 'sinistros'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+Traceback (most recent call last):
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2522, in get_property
+    return self._props[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'sinistros'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "B:\sprint3\src\sistema.py", line 25, in login
+    user = dao.authenticate_user(db, username, password)
+  File "B:\sprint3\src\dao.py", line 50, in authenticate_user
+    user = db.scalar(select(User).where(User.username == username))
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2413, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1633, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ~~~~~~~~~~~~~~~~~~~~~^
+        dialect=dialect,
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        linting=self.dialect.compiler_linting | compiler.WARN_LINTING,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 715, in _compile_w_cache
+    compiled_sql = self._compiler(
+        dialect,
+    ...<4 lines>...
+        **kw,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 1446, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 886, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 932, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\visitors.py", line 138, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 4781, in visit_select
+    compile_state = select_stmt._compile_state_factory(
+        select_stmt, self, **kwargs
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\base.py", line 701, in create_for_statement
+    return klass.create_for_statement(statement, compiler, **kw)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 447, in create_for_statement
+    return cls._create_orm_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        cast("Union[Select, FromStatement]", statement),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 1175, in _create_orm_context
+    _QueryEntity.to_compile_state(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<2 lines>...
+        is_current_entities=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 2628, in to_compile_state
+    _MapperEntity(
+    ~~~~~~~~~~~~~^
+        compile_state,
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        is_current_entities,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 2708, in __init__
+    entity._post_inspect
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 1338, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ~~~~~~~~~^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2724, in _post_inspect
+    self._check_configure()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2401, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4218, in _configure_registries
+    _do_configure_registries(registries, cascade)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4259, in _do_configure_registries
+    mapper._post_configure_properties()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2418, in _post_configure_properties
+    prop.init()
+    ~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\interfaces.py", line 595, in init
+    self.do_init()
+    ~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1660, in do_init
+    self._generate_backref()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 2144, in _generate_backref
+    self._add_reverse_property(self.back_populates)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1591, in _add_reverse_property
+    other = self.mapper.get_property(key, _configure_mappers=False)
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2524, in get_property
+    raise sa_exc.InvalidRequestError(
+    ...<3 lines>...
+    ) from err
+sqlalchemy.exc.InvalidRequestError: Mapper 'Mapper[Apolice(apolices)]' has no property 'sinistros'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2025-09-30 00:52:59,405 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 00:53:03,011 | ERROR | user=Sistema | op=INIT | Erro inesperado no login: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id, users.username, users.password_hash, users.role 
+FROM users 
+WHERE users.username = ?]
+[parameters: ('admin',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "B:\sprint3\src\sistema.py", line 25, in login
+    user = dao.authenticate_user(db, username, password)
+  File "B:\sprint3\src\dao.py", line 50, in authenticate_user
+    user = db.scalar(select(User).where(User.username == username))
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2413, in scalar
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        **kw,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id, users.username, users.password_hash, users.role 
+FROM users 
+WHERE users.username = ?]
+[parameters: ('admin',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-30 01:10:46,799 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 01:10:46,800 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:10:50,202 | WARNING | user=admin | op=LOGIN | Tentativa de login inválida para o usuário: admin.
+2025-09-30 01:11:59,852 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:12:04,325 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:12:04,326 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:12:30,258 | INFO | user=admin | op=CREATE_CLIENTE | Cliente criado ID=1, CPF=05033193171
+2025-09-30 01:12:30,258 | INFO | user=admin | op=MENU | Cliente cadastrado: ID=1
+2025-09-30 01:15:39,652 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:15:46,423 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:15:46,423 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:21:35,096 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:21:42,794 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:21:42,794 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:36:18,444 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:36:23,458 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:36:23,459 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:42:55,859 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:43:00,762 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:43:00,763 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:47:36,085 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:47:39,922 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:47:39,922 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:48:32,694 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:48:38,120 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:48:38,121 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:53:33,510 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:53:37,666 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:53:37,667 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:54:48,777 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 01:54:48,778 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:54:54,650 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:54:54,650 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:56:25,971 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:56:33,325 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:56:33,326 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:58:12,949 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:58:17,877 | WARNING | user=admin | op=LOGIN | Tentativa de login inválida para o usuário: admin.
+2025-09-30 01:58:21,469 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 01:58:24,509 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 01:58:24,509 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 01:59:18,825 | INFO | user=admin | op=CREATE_CLIENTE | Cliente criado ID=1, CPF=05033193171
+2025-09-30 01:59:18,826 | INFO | user=admin | op=MENU | Cliente cadastrado: ID=1
+2025-09-30 01:59:39,504 | ERROR | user=admin | op=CREATE_APOLICE | Erro inesperado ao criar apólice
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 174, in create_apolice
+    apolice = Apolice(
+        numero=num_apolice,
+    ...<6 lines>...
+        status="Ativa"
+    )
+  File "<string>", line 4, in __init__
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+        "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+    )
+TypeError: 'tipo_seguro' is an invalid keyword argument for Apolice
+2025-09-30 02:06:40,571 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 02:06:40,585 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 02:07:20,708 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 02:07:20,709 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 02:07:47,610 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 02:07:47,614 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 02:07:58,991 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 02:07:58,991 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 02:08:26,929 | INFO | user=admin | op=CREATE_CLIENTE | Cliente criado ID=1, CPF=05033193171
+2025-09-30 02:08:26,930 | INFO | user=admin | op=MENU | Cliente cadastrado: ID=1
+2025-09-30 02:08:45,449 | ERROR | user=admin | op=CREATE_APOLICE | Erro inesperado ao criar apólice
+Traceback (most recent call last):
+  File "B:\sprint3\src\dao.py", line 174, in create_apolice
+    apolice = Apolice(
+        numero=num_apolice,
+    ...<6 lines>...
+        status="Ativa"
+    )
+  File "<string>", line 4, in __init__
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "B:\sprint3\venv\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+        "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+    )
+TypeError: 'tipo_seguro' is an invalid keyword argument for Apolice
+2025-09-30 02:10:46,674 | INFO | user=Sistema | op=SETUP | Usuário 'admin' criado com sucesso.
+2025-09-30 02:10:46,675 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 02:10:51,571 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 02:10:51,572 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 02:11:19,417 | INFO | user=admin | op=CREATE_CLIENTE | Cliente criado ID=1, CPF=05033193171
+2025-09-30 02:11:19,418 | INFO | user=admin | op=MENU | Cliente cadastrado: ID=1
+2025-09-30 02:11:37,027 | INFO | user=admin | op=CREATE_APOLICE | Apólice N°4C989817 criada para o Cliente ID=1.
+2025-09-30 02:30:30,865 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 02:30:36,544 | WARNING | user=0 | op=LOGIN | Tentativa de login inválida para o usuário: 0.
+2025-09-30 02:43:53,977 | INFO | user=Sistema | op=SETUP | Usuário 'migration_v2' criado com sucesso.
+2025-09-30 02:43:53,977 | ERROR | user=migration_v2 | op=MIGRATION | Arquivo de clientes não encontrado em: data\sprint2\clientes.json
+2025-09-30 02:43:53,978 | ERROR | user=migration_v2 | op=MIGRATION | Arquivo de apólices não encontrado em: data\sprint2\apolices.json
+2025-09-30 02:43:53,978 | WARNING | user=migration_v2 | op=MIGRATION | Arquivo de sinistros não encontrado em: data\sprint2\sinistros.json. Nenhuma migração de sinistros executada.
+2025-09-30 02:43:53,978 | INFO | user=migration_v2 | op=MIGRATION | Migração de dados finalizada.
+2025-09-30 02:50:45,704 | INFO | user=migration_v2 | op=MIGRATION | Migração de dados finalizada.
+2025-09-30 02:53:41,114 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 02:53:44,409 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 02:53:44,409 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-09-30 03:22:03,758 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-09-30 03:22:30,628 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
+2025-09-30 03:22:30,628 | INFO | user=admin | op=MENU | Login realizado com sucesso.
