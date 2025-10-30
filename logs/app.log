@@ -586,3 +586,5 @@ TypeError: 'tipo_seguro' is an invalid keyword argument for Apolice
 2025-09-30 03:22:03,758 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
 2025-09-30 03:22:30,628 | INFO | user=admin | op=LOGIN | Login bem-sucedido.
 2025-09-30 03:22:30,628 | INFO | user=admin | op=MENU | Login realizado com sucesso.
+2025-10-29 19:10:46,448 | INFO | user=Sistema | op=INIT | Sistema inicializado, pronto para login.
+2025-10-29 20:56:54,214 | WARNING | user=Desconhecido | op=LOGIN | Tentativa de login inválida para o usuário: .

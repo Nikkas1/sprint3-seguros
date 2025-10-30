@@ -1,7 +1,6 @@
 # src/logger.py
 import logging
 import os
-import datetime
 
 # Cria a pasta de logs se não existir
 os.makedirs("logs", exist_ok=True)
@@ -25,6 +24,7 @@ logger.addHandler(fh)
 ch = logging.StreamHandler()
 ch.setFormatter(formatter)
 logger.addHandler(ch)
+
 
 # Função para obter um logger contextualizado (com usuário e operação)
 def get_logger(user_context="Sistema", operation=""):

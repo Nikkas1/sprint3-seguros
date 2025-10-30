@@ -1,7 +1,8 @@
 from utils import validar_data
 
+
 class Sinistro:
-    def __init__(self, numero_apolice, descricao, data, status='Aberto'):
+    def __init__(self, numero_apolice, descricao, data, status="Aberto"):
         if not validar_data(data):
             raise ValueError("Data do sinistro inválida (use DD/MM/AAAA).")
         if not descricao.strip():
@@ -12,7 +13,7 @@ class Sinistro:
         self.status = status
 
     def atualizar_status(self, novo_status):
-        if novo_status not in ['Aberto', 'Fechado', 'Em Análise']:
+        if novo_status not in ["Aberto", "Fechado", "Em Análise"]:
             raise ValueError("Status inválido. Use: Aberto, Fechado, Em Análise.")
         self.status = novo_status
 
@@ -21,4 +22,4 @@ class Sinistro:
 
     @staticmethod
     def from_dict(d):
-        return Sinistro(d['numero_apolice'], d['descricao'], d['data'], d['status'])
+        return Sinistro(d["numero_apolice"], d["descricao"], d["data"], d["status"])

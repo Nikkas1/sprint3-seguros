@@ -1,0 +1,62 @@
+# pyproject.toml
+
+[tool.black]
+# Tarefa 3: Configuração do Formatador Black
+line-length = 88
+target-version = ['py311'] # Defina a versão do Python que você está usando (Ex: 3.11)
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.vscode
+  | migrations
+  | __pycache__
+  | old_scripts
+  | lambda_rds_package # Excluir pacotes de dependência
+)/
+'''
+
+[tool.ruff]
+# Tarefa 3: Configuração do Linter Ruff
+# Combina funcionalidades de flake8, pylint e isort para garantir a padronização
+
+line-length = 88
+
+# Códigos de erro a serem incluídos
+select = [
+    "E",  # Erros Pycodestyle (Flake8)
+    "F",  # Erros Pyflakes
+    "I",  # Ordenação de Imports (Isort)
+    "W",  # Warnings (Pycodestyle)
+    "B",  # Bugs (B9xx)
+    "UP", # Modernização de Código (Upgrade)
+    "C4", # Melhorias em Comprehensions
+    "TID", # Check de código morto
+]
+
+# Pastas e arquivos a serem excluídos
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "migrations",
+    "lambda_rds_package",
+    "tests", # Excluir código de teste para o Linting principal
+]
+
+# Configuração para ordenação de imports (substitui o isort)
+[tool.ruff.isort]
+# Define seus módulos internos para que sejam agrupados corretamente
+known-first-party = ["src", "database", "services"]
+
+# Configuração de Cobertura para pytest (opcional, mas recomendado)
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--strict-markers --strict-config"
+testpaths = [
+    "tests",
+]
+python_files = "test_*.py"
